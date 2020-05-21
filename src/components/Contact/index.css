@@ -1,0 +1,33 @@
+.contact{
+    /* width: 100%; */
+    height: 40px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact__avatar{
+    height: 100%;
+    width: 45px;
+    margin-right: 15px;
+}
+
+.contact__avatar img{
+    height: 90%;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+}
+
+.contact__data{
+    width: calc(100% / 6);
+    font-size: 12px;
+}
+
+.contact__data.contact__name{
+    color: #4e84fb;
+}
