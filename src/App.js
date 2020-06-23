@@ -8,12 +8,15 @@ import Filter from './components/Filter'
 
 class App extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       contacts: [],
+      treatedContacts: []
     }
+
+    this.sortContent = this.sortContent.bind(this)
   }
 
   componentDidMount(){
@@ -23,20 +26,39 @@ class App extends React.Component {
       .then(respJson => {
 
         this.setState({
-          contacts: respJson
+          contacts: respJson,
+          treatedContacts: respJson
         })
 
       })
   }
 
+  sortContent(category){
+
+    console.log(this.state)
+    let treatedContacts = this.state.contacts.sort((a, b) => {
+
+      if(a[category] > b[category]) return 1
+
+      if(a[category] < b[category]) return -1
+
+      return 0;
+    });
+
+    this.setState(treatedContacts)
+  }
+
   render(){
 
+    
     return (
       <div className="main">
         <Topbar></Topbar>
-        <Filter></Filter>
+        <Filter
+          sortContent={this.sortContent}
+        ></Filter>
         <Contacts>
-          {this.state.contacts.map((el)=> <Contact key={el.id} contact_data={el}></Contact>)} 
+          {this.state.treatedContacts.map((el)=> <Contact key={el.id} contact_data={el}></Contact>)} 
         </Contacts>
         
       </div>
