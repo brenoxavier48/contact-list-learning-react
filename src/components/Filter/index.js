@@ -34,7 +34,10 @@ class Filter extends React.Component{
             <div className="filter__container">
                 <section className="filter__section">
                     <div className="search__filter">
-                        <input type="text" className="filter__input" placeholder="Pesquisar..."/>
+                        <input type="text"
+                               className="filter__input"    
+                               placeholder="Pesquisar..."
+                               onChange={this.props.filterContent}/>
                         <FaSearch></FaSearch>
                     </div>
                     <button className={`filter__sort__button ${this.state.name ? 'selected' : ''}`}

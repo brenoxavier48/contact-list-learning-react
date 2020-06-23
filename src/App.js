@@ -16,7 +16,8 @@ class App extends React.Component {
       treatedContacts: []
     }
 
-    this.sortContent = this.sortContent.bind(this)
+    this.sortContent = this.sortContent.bind(this);
+    this.filterContent = this.filterContent.bind(this);
   }
 
   componentDidMount(){
@@ -45,7 +46,18 @@ class App extends React.Component {
       return 0;
     });
 
-    this.setState(treatedContacts)
+    this.setState({treatedContacts: treatedContacts})
+  }
+
+  filterContent(event){
+
+    let content = new RegExp( event.target.value.toLowerCase() )
+
+    let treatedContacts = this.state.contacts.filter( (contact) => {
+      return contact.name.toLowerCase().match(content)
+    })
+
+    this.setState({treatedContacts: treatedContacts});
   }
 
   render(){
@@ -56,6 +68,7 @@ class App extends React.Component {
         <Topbar></Topbar>
         <Filter
           sortContent={this.sortContent}
+          filterContent={this.filterContent}
         ></Filter>
         <Contacts>
           {this.state.treatedContacts.map((el)=> <Contact key={el.id} contact_data={el}></Contact>)} 
